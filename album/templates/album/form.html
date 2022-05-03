@@ -1,0 +1,24 @@
+{% extends 'core/base.html'%} {% load crispy_forms_tags %} {% block body %}
+<h4>
+  {% if edit %} Edit Musician Data {% else %} Add New Musician {% endif %}
+</h4>
+<form method="post">
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-0">
+      {{ form.first_name|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      {{ form.last_name|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      {{ form.instrument|as_crispy_field }}
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary mt-3">
+    {% if edit %} Edit{% else %} Add{% endif %}
+  </button>
+</form>
+
+{% endblock %}

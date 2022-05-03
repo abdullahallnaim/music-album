@@ -1,0 +1,31 @@
+{% extends 'core/base.html'%} {% block body %}
+<h3 class="mt-4 text-center">Create Your Favorite Musician Album List</h3>
+<h6 class="mb-5 text-center">A SIMPLE CRUD APPLICATION</h6>
+
+<table class="table table-bordered">
+  <th>ID</th>
+  <th>First Name</th>
+  <th>Last Name</th>
+  <th>Instruments</th>
+  <th>Action</th>
+  <tbody>
+    {% for row in album %}
+    <tr>
+      <td>0{{row.id}}</td>
+      <td>{{row.first_name}}</td>
+      <td>{{row.last_name}}</td>
+      <td>{{row.instrument}}</td>
+      <td class="text-center">
+        <button class="btn btn-warning">
+          <a
+            class="text-decoration-none text-dark"
+            href="{% url 'album:album_list' id=row.id  %}"
+          >
+            View Details</a
+          >
+        </button>
+      </td>
+    </tr>
+    {% endfor%} {% endblock %}
+  </tbody>
+</table>

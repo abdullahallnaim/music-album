@@ -1,0 +1,43 @@
+{% extends 'core/base.html'%} {% block body %}
+<h4>Musician Name : {{info.first_name}} {{info.last_name}}</h4>
+<p>INSTUMENT NAME : {{info.instrument}}</p>
+<h5>Avg rating : {{avg_rating.num_stars__avg}}</h5>
+<a
+  class="btn btn-warning text-decoration-none my-3"
+  href="{% url 'album:edit_data' artist_id=info.id %}"
+  >Edit Musician Data</a
+>
+<a
+  class="btn btn-danger text-decoration-none my-3 mx-3"
+  href="{% url 'album:delete_musician_data' artist_id=info.id %}"
+  >Delete Musician Data</a
+>
+<table class="table table-bordered">
+  <th>Album</th>
+  <th>Rating</th>
+  <th>Release Date</th>
+  <th>Action</th>
+  <tbody>
+    {% for i in album_list %}
+    <tr>
+      <td>{{i.name}}</td>
+      <td>{{i.num_stars}}</td>
+      <td>{{i.release_date}}</td>
+      <td>
+        <a
+          class="btn btn-warning text-decoration-none"
+          href="{% url 'album:edit_album_data' artist_id=info.id album_id=i.id  %}"
+          >Edit</a
+        >
+        <a
+          class="btn btn-danger text-decoration-none mx-3"
+          href="{% url 'album:delete_album_data' album_id=i.id artist_id=info.id %}"
+          onclick="confirm('Are you sure you want to delete this album?')"
+          >Delete</a
+        >
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

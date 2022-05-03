@@ -1,0 +1,27 @@
+{% extends 'core/base.html'%} {% load crispy_forms_tags %} {% block body %} 
+{% if text %} {{text}} {% endif%}
+<h4>
+  {% if edit %} Edit Album Data {% else %} Add New Album {% endif %}
+</h4>
+<form method="post">
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-2">
+      {{ form.artist|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-2">{{ form.name|as_crispy_field }}</div>
+    <div class="form-group col-md-6 mb-2">
+      {{ form.release_date|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-2">
+      {{ form.num_stars|as_crispy_field }}
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary mt-3">
+    {% if edit %} Edit {% else %} 
+    Add{% endif %}
+  </button>
+</form>
+
+{% endblock %}
